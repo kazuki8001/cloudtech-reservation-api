@@ -2,10 +2,16 @@ version: 0.2
 env:
   variables:
     ECR_REPO_NAME: api-repository
+  secrets-manager:
+    DOCKER_USERNAME: dockerhub/credentials:username
+    DOCKER_PASSWORD: dockerhub/credentials:password
 phases:
   pre_build:
     commands:
       - echo "hello"
+      - echo Logging in to Docker Hub...
+      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      - echo Logged in successfully.
       
       #ECR login
       - ECR_MAIN_URI="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
