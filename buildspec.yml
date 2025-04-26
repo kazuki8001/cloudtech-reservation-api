@@ -27,7 +27,7 @@ phases:
       - docker push ${ECR_IMAGE_URI}
 
       #- printf '[{"name":"api-container-app","imageUri":"%s"}]' ${ECR_IMAGE_URI} > imagedefinitions.json
-      - printf '{"imageUri":"%s"}' ${ECR_IMAGE_URI} > imageDetail.json
+      - printf '[{"name":"api-container-app","imageUri":"%s"}]' ${ECR_IMAGE_URI} > imageDetail.json
         
 artifacts:
   files:
