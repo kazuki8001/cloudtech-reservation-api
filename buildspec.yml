@@ -27,11 +27,11 @@ phases:
       - docker push ${ECR_IMAGE_URI}
 
       #- printf '[{"name":"api-container-app","imageUri":"%s"}]' ${ECR_IMAGE_URI} > imagedefinitions.json
-      - printf '[{"name":"api-container-app","imageUri":"%s"}]' ${ECR_IMAGE_URI} > imageDetail.json
-        
+      - printf '{"ImageURI":"%s"}' ${ECR_IMAGE_URI} > imageDetail.json
+
 artifacts:
   files:
 #    - imagedefinitions.json
-     - appspec.yml
-     - taskdef.json
-     - imageDetail.json
+    - appspec.yml
+    - taskdef.json
+    - imageDetail.json
