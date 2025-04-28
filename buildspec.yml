@@ -9,8 +9,8 @@ phases:
       - echo "hello"
       - echo Logging in to DockerHub...
       # Secrets Managerから安全に取得（標準出力は捨てる）
-      - export DOCKERHUB_USERNAME=$(aws secretsmanager get-secret-value --secret-id dockerhub/credentials --query SecretString --output text | jq -r '.username') >/dev/null
-      - export DOCKERHUB_PASSWORD=$(aws secretsmanager get-secret-value --secret-id dockerhub/credentials --query SecretString --output text | jq -r '.password') >/dev/null
+      - export DOCKERHUB_USERNAME=$(aws secretsmanager get-secret-value --secret-id dockerhub/credential --query SecretString --output text | jq -r '.username') >/dev/null
+      - export DOCKERHUB_PASSWORD=$(aws secretsmanager get-secret-value --secret-id dockerhub/credential --query SecretString --output text | jq -r '.password') >/dev/null
       # 取得後にdocker login（パスワードは標準入力）
       - echo "$DOCKERHUB_PASSWORD" | docker login --username "$DOCKERHUB_USERNAME" --password-stdin
       - echo DockerHub login successful.
